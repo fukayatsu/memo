@@ -1,0 +1,10 @@
+%h1 All Posts
+%ul.articles
+  - locales[:posts].each do |post|
+    %li
+      %article
+        %header
+          %h2
+            %a{href: post.path}= post.title_html
+          %p.metadata
+            %time{ datetime: post.created_at }= post.created_at.to_date

@@ -1,0 +1,44 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ansi (1.5.0)
+    ast (2.4.0)
+    commonmarker (0.20.2)
+      ruby-enum (~> 0.5)
+    concurrent-ruby (1.1.5)
+    ffi (1.11.3)
+    front_matter_parser (0.2.1)
+    haml (5.1.2)
+      temple (>= 0.8.0)
+      tilt
+    i18n (1.7.0)
+      concurrent-ruby (~> 1.0)
+    oga (3.0)
+      ast
+      ruby-ll (~> 2.1)
+    rack (2.0.8)
+    rake (13.0.1)
+    ruby-enum (0.7.2)
+      i18n
+    ruby-ll (2.1.2)
+      ansi
+      ast
+    sassc (2.2.1)
+      ffi (~> 1.9)
+    temple (0.8.2)
+    tilt (2.0.10)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  commonmarker
+  front_matter_parser
+  haml
+  oga
+  rack
+  rake
+  sassc
+
+BUNDLED WITH
+   2.1.2
