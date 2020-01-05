@@ -51,7 +51,13 @@ class App
       headers["Content-Type"] = Rack::Mime.mime_type(File.extname(path))
     when %r{^/posts/.*}
       file_path = path_info.delete_prefix('/') + '.md'
-      body = render_with_layout :post, post: Post.find(file_path)
+      post = Post.find(file_path)
+      body = render_with_layout(
+        :post,
+        post: post,
+        title: post.title_text,
+        description: post.description_text
+      )
     when '/screen.css'
       headers["Content-Type"] = "text/css"
       body = SassC::Engine.new(

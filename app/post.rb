@@ -3,9 +3,12 @@ require 'front_matter_parser'
 require 'oga'
 require 'time'
 
+require './app/sanitizer'
 require './app/errors'
 
 class Post
+  include Sanitizer
+
   FILE_PATH_PATTERN = 'posts/**/*.md'
 
   class << self
@@ -32,13 +35,21 @@ class Post
     @path ||= "/" + @file_path.delete_suffix('.md')
   end
 
+  def title_document
+    @title_document ||= document.css('h1').first
+  end
+
   def title_html
-    @title ||= document.css('h1').first.children.map(&:to_xml).join
+    @title_html ||= title_document.children.map(&:to_xml).join
+  end
+
+  def title_text
+    @title_text ||= sanitize(title_document)
   end
 
   # 最初の見出しから次の見出しまでを抽出
-  def description_html
-    return @description_html if @description_html
+  def description_document
+    return @description_document if @description_document
 
     header_found = false
     children = []
@@ -50,7 +61,15 @@ class Post
       children << elem if header_found
     end
 
-    @description_html = children.map(&:to_xml).join.strip
+    @description_document = Oga::XML::Document.new(children: children)
+  end
+
+  def description_html
+    @description_html ||= description_document.to_xml
+  end
+
+  def description_text
+    @description_text ||= sanitize(description_document)
   end
 
   def created_at
