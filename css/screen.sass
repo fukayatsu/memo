@@ -14,7 +14,11 @@
     --theme-base: #222831
 
 body
+  font-size: 16px
   font-family: "ヒラギノ角ゴPro W3", "HiraKakuPro-W3", "ヒラギノ角ゴ W3", "Hiragino Kaku Gothic Pro", "Hiragino Sans", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif
+  letter-spacing: 1.5px
+  line-height: 1.75
+
   background-color: var(--theme-base)
   color: var(--theme-text)
 
@@ -43,7 +47,7 @@ footer
 
 ul.articles
   padding: 0
-  li
+  > li
     list-style-type: none
     padding-bottom: 2rem
 
@@ -73,4 +77,9 @@ article.detail
       h1, h2
         margin-top: 1.1rem
 
-
+.markdown
+  code
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace
+    background-color: var(--theme-base-sub)
+    border-radius: .2rem
+    padding: .1rem .4rem

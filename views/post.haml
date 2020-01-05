@@ -6,4 +6,4 @@
       %p.metadata
         %time{ datetime: post.created_at }= post.created_at.to_date
   %body
-    = post.html_without_header
+    .markdown= post.html_without_header

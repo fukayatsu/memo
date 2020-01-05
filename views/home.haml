@@ -9,5 +9,5 @@
           %p.metadata
             %time{ datetime: post.created_at }= post.created_at.to_date
         %body
-          = post.description_html
+          .markdown= post.description_html
           %a{href: post.path}= 'Read more...'
