@@ -1,0 +1,35 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.x'
+    - name: cache bundler
+      uses: actions/cache@v1
+      with:
+        path: vendor/bundle
+        key: bundler-${{ runner.os }}-${{ hashFiles('Gemfile.lock') }}
+        restore-keys: |
+          bundler-${{ runner.os }}-${{ hashFiles('Gemfile.lock') }}
+          bundler-${{ runner.os }}-
+    - name: bundle install
+      run: |
+        gem install -N bundler
+        bundle install --jobs 4 --retry 3 --path vendor/bundle
+    - name: build
+      run: bundle exec rake build
+    - name: deploy
+      if: github.ref == 'refs/heads/master'
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./build
