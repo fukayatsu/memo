@@ -4,14 +4,12 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    container:
+      image: ruby:2.7
 
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-ruby@v1
-      with:
-        ruby-version: '2.x'
     - name: cache bundler
       uses: actions/cache@v1
       with:
