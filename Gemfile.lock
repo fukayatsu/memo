@@ -13,6 +13,7 @@ GEM
       tilt
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
+    liquid (4.0.3)
     oga (3.0)
       ast
       ruby-ll (~> 2.1)
@@ -35,6 +36,7 @@ DEPENDENCIES
   commonmarker
   front_matter_parser
   haml
+  liquid
   oga
   rack
   rake
