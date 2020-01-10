@@ -2,6 +2,9 @@ name: CI
 
 on: [push]
 
+env:
+  RUBYOPT: -EUTF-8
+
 jobs:
   build:
     runs-on: ubuntu-latest
