@@ -21,7 +21,8 @@ class Builder
   private
 
   def copy_static_files
-    FileUtils.copy(Dir.glob('public/*'), "#{OUTPUT_DIR}/")
+    files = Dir.glob('public/*', File::FNM_DOTMATCH) - %w[public/. public/..]
+    FileUtils.copy(files, "#{OUTPUT_DIR}/")
   end
 
   def write_content(dist, content)
