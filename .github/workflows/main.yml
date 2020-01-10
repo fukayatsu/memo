@@ -6,7 +6,7 @@ env:
   RUBYOPT: -EUTF-8
   BUNDLE_PATH: vendor/bundle
   BUNDLE_APP_CONFIG: vendor/bundle
-
+  RACK_ENV: production
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,7 +26,7 @@ jobs:
     - name: bundle install
       run: |
         gem install -N bundler
-        bundle install --jobs 4 --retry 3
+        bundle install --jobs 4 --retry 3 --without development
     - name: build
       run: bundle exec rake build
     - name: deploy

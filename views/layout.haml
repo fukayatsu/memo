@@ -22,3 +22,5 @@
       = render(:_header)
       %main= yield
       = render(:_footer)
+    - if ENV['RACK_ENV'] != 'production'
+      %script{type: "text/javascript", src: "/dev/js/dev.js"}

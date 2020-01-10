@@ -1,0 +1,16 @@
+{
+  "name": "memo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "ssh://git@github.com/fukayatsu/memo.git",
+  "author": "fukayatsu <fukayatsu@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "watch": "tsc -w"
+  },
+  "devDependencies": {
+    "ts-node": "^8.6.0",
+    "typescript": "^3.7.4"
+  }
+}

@@ -12,3 +12,7 @@ gem "oga"
 gem "rack"
 gem "rake"
 gem "sassc"
+
+group :developmentd do
+  gem "foreman"
+end

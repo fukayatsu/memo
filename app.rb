@@ -1,3 +1,6 @@
+require 'json'
+require 'base64'
+
 require 'haml'
 require 'sassc'
 
@@ -32,6 +35,7 @@ class App
   end
 
   def call(env)
+    # TODO: Use Rack::Request.new(env)
     path_info = env['PATH_INFO']
 
     body = nil
@@ -44,20 +48,20 @@ class App
       body = render_with_layout :post, post: Post.find('pages/about.md')
     when '/posts'
       body = render_with_layout :posts, posts: Post.all
-    when %r{^/posts/[^\.]+\.[^\.]{3,}$}
-      path = path_info.delete_prefix('/')
-      raise NotFound unless File.exist?(path)
-      body = File.read(path)
-      headers["Content-Type"] = Rack::Mime.mime_type(File.extname(path))
     when %r{^/posts/.*}
-      file_path = path_info.delete_prefix('/') + '.md'
-      post = Post.find(file_path)
-      body = render_with_layout(
-        :post,
-        post: post,
-        title: post.title_text,
-        description: post.description_text
-      )
+      file_path = path_info.delete_prefix('/')
+      if File.exist?(file_path)
+        body = File.read(file_path)
+        headers["Content-Type"] = Rack::Mime.mime_type(File.extname(file_path))
+      else
+        post = Post.find(file_path + '.md')
+        body = render_with_layout(
+          :post,
+          post: post,
+          title: post.title_text,
+          description: post.description_text
+        )
+      end
     when '/screen.css'
       headers["Content-Type"] = "text/css"
       body = SassC::Engine.new(
@@ -65,6 +69,30 @@ class App
         style: :compressed,
         syntax: :sass
       ).render
+    when %r{^/dev/.*}
+      raise NotFound if ENV['RACK_ENV'] == 'production'
+
+      if env['REQUEST_METHOD'] == 'POST'
+        data = JSON.parse(env['rack.input'].read)
+        md_path = data['pathname'].delete_prefix('/') + '.md'
+        raise NotFound unless File.exist?(md_path)
+
+        dir = File.dirname(md_path)
+        content = Base64.decode64(data['result'].split(',').last)
+        file_name = data['name'].gsub(' ', '_')
+        file_path = "#{dir}/#{file_name}"
+        File.write(file_path, content)
+        File.open(md_path, 'a') { |f|
+          f.puts "\n![#{data['name']}](#{file_name})\n"
+        }
+        return [204, {}, []]
+      else
+        file_path = path_info.delete_prefix('/')
+        raise NotFound unless  File.exist?(file_path)
+
+        body = File.read(file_path)
+        headers["Content-Type"] = Rack::Mime.mime_type(File.extname(file_path))
+      end
     else
       file_path = "public#{path_info}"
       raise NotFound unless File.exists?(file_path)
