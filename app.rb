@@ -66,7 +66,11 @@ class App
         syntax: :sass
       ).render
     else
-      raise NotFound
+      file_path = "public#{path_info}"
+      raise NotFound unless File.exists?(file_path)
+
+      body = File.read(file_path)
+      headers["Content-Type"] = Rack::Mime.mime_type(File.extname(file_path))
     end
 
     headers["Content-Type"] ||= "text/html"
