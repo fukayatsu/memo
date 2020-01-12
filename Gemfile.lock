@@ -15,7 +15,7 @@ GEM
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     liquid (4.0.3)
-    oga (3.0)
+    oga (3.2)
       ast
       ruby-ll (~> 2.1)
     rack (2.0.8)
