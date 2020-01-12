@@ -18,7 +18,7 @@ GEM
     oga (3.2)
       ast
       ruby-ll (~> 2.1)
-    rack (2.0.8)
+    rack (2.1.0)
     rake (13.0.1)
     ruby-enum (0.7.2)
       i18n
