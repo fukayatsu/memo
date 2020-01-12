@@ -15,4 +15,5 @@ gem "sassc"
 
 group :developmentd do
   gem "foreman"
+  gem "rerun"
 end

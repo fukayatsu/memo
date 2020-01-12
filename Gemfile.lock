@@ -15,11 +15,19 @@ GEM
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     liquid (4.0.3)
+    listen (3.2.1)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     oga (3.2)
       ast
       ruby-ll (~> 2.1)
     rack (2.1.0)
     rake (13.0.1)
+    rb-fsevent (0.10.3)
+    rb-inotify (0.10.1)
+      ffi (~> 1.0)
+    rerun (0.13.0)
+      listen (~> 3.0)
     ruby-enum (0.7.2)
       i18n
     ruby-ll (2.1.2)
@@ -42,6 +50,7 @@ DEPENDENCIES
   oga
   rack
   rake
+  rerun
   sassc
 
 BUNDLED WITH

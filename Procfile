@@ -1,2 +1,2 @@
-web: bundle exec rackup
+web: bundle exec rerun rackup
 tsc: yarn watch
