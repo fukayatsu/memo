@@ -1,5 +1,13 @@
 # memo
 
+## dev
+
+```
+$ docker-compose build
+$ docker-compose up -d
+$ docker-compose exec app bin/update
+```
+
 ## New Post
 
 ```

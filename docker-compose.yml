@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+  app:
+    build: .
+    command: bundle exec foreman start -m "web=1,tsc=1"
+    volumes:
+      - .:/app
+      - bundle:/app/vendor/bundle
+      - node_modules:/app/node_modules
+      - dev_js:/app/dev/js
+    tty: true
+    environment:
+      - VIRTUAL_HOST=memo.test
+  reloader:
+    build: .
+    command: bundle exec foreman start reloader
+    volumes:
+      - .:/app
+      - bundle:/app/vendor/bundle
+      - node_modules:/app/node_modules
+      - dev_js:/app/dev/js
+    tty: true
+    environment:
+      - VIRTUAL_HOST=reloader.memo.test
+
+volumes:
+  bundle:
+  node_modules:
+  dev_js:
