@@ -18,4 +18,5 @@ group :developmentd do
   gem "rerun"
   gem "faye-websocket"
   gem "puma"
+  gem "rack-dev-mark"
 end
