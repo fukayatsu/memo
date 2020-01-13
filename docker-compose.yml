@@ -7,6 +7,7 @@ services:
       - "80:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: on-failure:5
   app:
     build: .
     command: bundle exec foreman start -m "web=1,tsc=1"
@@ -18,6 +19,7 @@ services:
     tty: true
     environment:
       - VIRTUAL_HOST=memo.test
+    restart: on-failure:5
   reloader:
     build: .
     command: bundle exec foreman start reloader
@@ -29,6 +31,7 @@ services:
     tty: true
     environment:
       - VIRTUAL_HOST=reloader.memo.test
+    restart: on-failure:5
 
 volumes:
   bundle:
