@@ -6,6 +6,10 @@ GEM
     commonmarker (0.20.2)
       ruby-enum (~> 0.5)
     concurrent-ruby (1.1.5)
+    eventmachine (1.2.7)
+    faye-websocket (0.10.9)
+      eventmachine (>= 0.12.0)
+      websocket-driver (>= 0.5.1)
     ffi (1.11.3)
     foreman (0.87.0)
     front_matter_parser (0.2.1)
@@ -18,9 +22,12 @@ GEM
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
+    nio4r (2.5.2)
     oga (3.2)
       ast
       ruby-ll (~> 2.1)
+    puma (4.3.1)
+      nio4r (~> 2.0)
     rack (2.1.1)
     rake (13.0.1)
     rb-fsevent (0.10.3)
@@ -37,17 +44,22 @@ GEM
       ffi (~> 1.9)
     temple (0.8.2)
     tilt (2.0.10)
+    websocket-driver (0.7.1)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   commonmarker
+  faye-websocket
   foreman
   front_matter_parser
   haml
   liquid
   oga
+  puma
   rack
   rake
   rerun
