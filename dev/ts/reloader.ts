@@ -1,6 +1,6 @@
 export default class Reloader {
   listen() {
-    const ws = new WebSocket('ws://localhost:9293');
+    const ws = new WebSocket(`ws://${process.env.RELOADER_HOST}`);
     ws.addEventListener('open', (event) => {
       console.log('ws:open', event)
     });

@@ -11,7 +11,6 @@ GEM
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     ffi (1.11.3)
-    foreman (0.87.0)
     front_matter_parser (0.2.1)
     haml (5.1.2)
       temple (>= 0.8.0)
@@ -29,6 +28,8 @@ GEM
     puma (4.3.1)
       nio4r (~> 2.0)
     rack (2.1.1)
+    rack-dev-mark (0.7.5)
+      rack (>= 1.1)
     rake (13.0.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
@@ -54,13 +55,13 @@ PLATFORMS
 DEPENDENCIES
   commonmarker
   faye-websocket
-  foreman
   front_matter_parser
   haml
   liquid
   oga
   puma
   rack
+  rack-dev-mark
   rake
   rerun
   sassc
