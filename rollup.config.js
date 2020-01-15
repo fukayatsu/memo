@@ -2,7 +2,11 @@ import typescript from '@rollup/plugin-typescript';
 import injectProcessEnv from 'rollup-plugin-inject-process-env';
 
 export default {
-  input: 'dev/ts/dev.ts',
+  input: {
+    index:       'dev/ts/index.ts',
+    dragAndDrop: 'dev/ts/dragAndDrop.ts',
+    reloader:    'dev/ts/reloader.ts'
+  },
   output: {
     dir: 'dev/js',
     format: 'esm'
