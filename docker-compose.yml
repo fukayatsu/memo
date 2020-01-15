@@ -10,7 +10,7 @@ services:
     restart: on-failure:5
   app:
     build: .
-    command: bundle exec foreman start -m "web=1,tsc=1"
+    command: bundle exec rerun --pattern "**/*.{rb,ru,lock}" -- puma config.ru -p 80
     volumes:
       - .:/app
       - bundle:/app/vendor/bundle
@@ -20,9 +20,21 @@ services:
     environment:
       - VIRTUAL_HOST=memo.test
     restart: on-failure:5
+  js:
+    build: .
+    command: bundle exec rerun --pattern "rollup.config.js" -- yarn watch
+    volumes:
+      - .:/app
+      - bundle:/app/vendor/bundle
+      - node_modules:/app/node_modules
+      - dev_js:/app/dev/js
+    tty: true
+    environment:
+      - RELOADER_HOST=reloader.memo.test
+    restart: on-failure:5
   reloader:
     build: .
-    command: bundle exec foreman start reloader
+    command: bundle exec rerun --pattern "**/*.{rb,ru,lock,md,haml,js,css}" -- puma dev_reloader.ru -p 80
     volumes:
       - .:/app
       - bundle:/app/vendor/bundle

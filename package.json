@@ -7,11 +7,15 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "watch": "tsc -w --preserveWatchOutput",
-    "build": "tsc"
+    "watch": "rollup -c -w",
+    "build": "rollup -c"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^2.1.0",
+    "rollup": "^1.29.0",
+    "rollup-plugin-inject-process-env": "^1.1.0",
     "ts-node": "^8.6.0",
+    "tslib": "^1.10.0",
     "typescript": "^3.7.4"
   }
 }

@@ -14,7 +14,6 @@ gem "rake"
 gem "sassc"
 
 group :developmentd do
-  gem "foreman"
   gem "rerun"
   gem "faye-websocket"
   gem "puma"
