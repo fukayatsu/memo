@@ -3,7 +3,7 @@ GEM
   specs:
     ansi (1.5.0)
     ast (2.4.0)
-    commonmarker (0.20.2)
+    commonmarker (0.21.0)
       ruby-enum (~> 0.5)
     concurrent-ruby (1.1.5)
     eventmachine (1.2.7)
@@ -15,7 +15,7 @@ GEM
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
-    i18n (1.7.0)
+    i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     liquid (4.0.3)
     listen (3.2.1)
