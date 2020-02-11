@@ -17,7 +17,7 @@ content = template.render(
 )
 
 prefix = Time.now.strftime('posts/%Y/%m/%d/%H%M-')
-file_path = "#{prefix}#{title.gsub(/\s/, '_')}.md"
+file_path = "#{prefix}#{title.gsub(/\s/, '-')}.md"
 FileUtils.mkdir_p(File.dirname(file_path))
 File.write(file_path, content)
 
