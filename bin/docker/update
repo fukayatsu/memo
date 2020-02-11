@@ -1,0 +1,3 @@
+#!/bin/sh
+yarn install --frozen-lockfile
+bundle install --retry=3 --jobs=4

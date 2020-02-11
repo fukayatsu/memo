@@ -1,24 +1,17 @@
-#!/usr/bin/env bundle exec ruby
+#!/usr/bin/env ruby
 
-require 'optparse'
-require 'liquid'
+require "open3"
 
-options = ARGV.getopts('t:b:', 'tags:', 'base:')
+command = [
+  'docker-compose',
+  'run',
+  'app',
+  'bin/docker/new'
+] + ARGV
 
-tags = options['tags'] || options['t']
-base = options['base'] || options['b'] || 'default'
-title = ARGV.first
-
-template = Liquid::Template.parse(File.read("templates/#{base}.md"))
-content = template.render(
-  'tags' => tags,
-  # foo-bar_baz => Foo Bar Baz
-  'title' => title.gsub(/(?:^|[-_])([a-z])/) { ' ' + $1.upcase }.strip
-)
-
-prefix = Time.now.strftime('posts/%Y/%m/%d/%H%M-')
-file_path = "#{prefix}#{title.gsub(/\s/, '-')}.md"
-FileUtils.mkdir_p(File.dirname(file_path))
-File.write(file_path, content)
-
-`code #{file_path}`
+output, error, status = Open3.capture3(*command)
+if status.success?
+  system("code #{output}")
+else
+  puts error
+end

@@ -3,9 +3,14 @@
 ## dev
 
 ```
-$ docker-compose build
-$ docker-compose up -d
-$ docker-compose exec app bin/update
+# Start docker-compose
+$ bin/start
+
+# Update dependencies
+$ bin/update
+
+# Stop docker-compose
+$ bin/stop
 ```
 
 ## New Post
