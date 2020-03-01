@@ -25,7 +25,7 @@ GEM
     oga (3.2)
       ast
       ruby-ll (~> 2.1)
-    puma (4.3.1)
+    puma (4.3.3)
       nio4r (~> 2.0)
     rack (2.2.2)
     rack-dev-mark (0.7.5)
