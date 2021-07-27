@@ -12,7 +12,7 @@ GEM
       websocket-driver (>= 0.5.1)
     ffi (1.11.3)
     front_matter_parser (0.2.1)
-    haml (5.1.2)
+    haml (5.2.2)
       temple (>= 0.8.0)
       tilt
     i18n (1.8.2)
