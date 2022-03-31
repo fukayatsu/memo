@@ -21,11 +21,11 @@ GEM
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    nio4r (2.5.2)
+    nio4r (2.5.8)
     oga (3.2)
       ast
       ruby-ll (~> 2.1)
-    puma (4.3.3)
+    puma (4.3.12)
       nio4r (~> 2.0)
     rack (2.2.2)
     rack-dev-mark (0.7.5)
